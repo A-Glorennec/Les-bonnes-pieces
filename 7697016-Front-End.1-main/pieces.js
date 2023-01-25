@@ -41,6 +41,21 @@ for (let i = 0; i < pieces.length; i++) {
         console.log(piecesOrdonnees)
     });
 
+    const noms = pieces.map(piece => piece.nom);
+    for (let i = pieces.length -1; i >= 0; i-- ) {
+        if (pieces[i].prix > 35) {
+            noms.splice(i,1)            
+        }
+    }
+
+    const abordablesElements = document.createElement ('ul');
+    for (let i = 0; i < noms.length; i++) {
+        const nomElement = document.createElement('li');
+        nomElement.innerText = noms[i];
+        abordablesElements.appendChild(nomElement)
+    }
+    document.querySelector('.abordables')
+        .appendChild(abordablesElements)
 
     const article = pieces[i];
     // Récupération de l'élément du DOM qui accueillera les fiches
@@ -60,6 +75,8 @@ for (let i = 0; i < pieces.length; i++) {
     descriptionElement.innerText = article.description ?? "Pas de description pour le moment.";
     const stockElement = document.createElement("p");
     stockElement.innerText = article.disponibilite ? "En stock" : "Rupture de stock";
+
+    
     
     // On rattache la balise article a la section Fiches
     sectionFiches.appendChild(pieceElement);
