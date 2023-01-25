@@ -4,6 +4,44 @@ const pieces = await reponse.json();
 
 for (let i = 0; i < pieces.length; i++) {
 
+    const boutonTrier = document.querySelector(".btn-trier");
+    boutonTrier.addEventListener("click", function () {
+        const piecesOrdonnees = Array.from(pieces);
+        piecesOrdonnees.sort(function (a, b) {
+            return a.prix - b.prix;
+        });
+        console.log(piecesOrdonnees)
+    });
+
+    const boutonFilter = document.querySelector(".btn-filtrer");
+    
+    boutonFilter.addEventListener("click", function () {
+        const piecesFiltrees = pieces.filter(function (piece) {
+            return piece.prix <= 35;
+        });
+        console.log(piecesFiltrees);
+    });
+
+    const boutonNoDescription = document.querySelector(".btn-description");
+
+    boutonNoDescription.addEventListener("click", function () {
+        const piecesFiltrees = pieces.filter(function (piece) {
+            return piece.description
+        });
+       console.log(piecesFiltrees) 
+    });
+
+    const boutonDecroissant = document.querySelector(".btn-decroissant");
+
+    boutonDecroissant.addEventListener("click", function () {
+        const piecesOrdonnees = Array.from(pieces);
+        piecesOrdonnees.sort(function (a, b) {
+            return b.prix - a.prix;
+        });
+        console.log(piecesOrdonnees)
+    });
+
+
     const article = pieces[i];
     // Récupération de l'élément du DOM qui accueillera les fiches
     const sectionFiches = document.querySelector(".fiches");
